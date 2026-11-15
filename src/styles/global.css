@@ -1,0 +1,272 @@
+@import '@fontsource-variable/archivo/wght.css';
+@import '@fontsource-variable/plus-jakarta-sans';
+
+:root {
+	/* Colores */
+	--brand: #ff4f00;
+	--text: #2d2d2d;
+	--surface-dark: #2b2b2b;
+	--bg: #f9f9f9;
+	--bg-soft: #f6f6f6;
+	--muted: #d9d9d9;
+	--white: #fff;
+
+	/* Tipografía */
+	--font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+	--font-ui: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+
+	/* Layout */
+	--container: 1230px;
+	--gutter: 24px;
+	--header-h: 79px;
+
+	/* Radios */
+	--radius-sm: 8px;
+	--radius: 16px;
+	--radius-lg: 24px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-display);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body.is-locked {
+	overflow: hidden;
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+
+:focus-visible {
+	outline: 2px solid var(--brand);
+	outline-offset: 3px;
+}
+
+::selection {
+	background: var(--brand);
+	color: var(--white);
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+	width: 100%;
+	max-width: calc(var(--container) + var(--gutter) * 2);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.container--wide {
+	max-width: 1440px;
+}
+
+.section {
+	padding-block: 96px;
+}
+
+.section--tight {
+	padding-block: 64px;
+}
+
+[id] {
+	scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+/* ---------- Tipografía ---------- */
+
+.eyebrow {
+	display: inline-block;
+	color: var(--brand);
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.7px;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.section-title {
+	font-size: 34px;
+	font-weight: 900;
+	letter-spacing: -0.68px;
+	line-height: 1;
+	font-variation-settings: 'wdth' 96;
+}
+
+.section-lead {
+	max-width: 62ch;
+	color: #5c5c5c;
+	font-size: 16px;
+	line-height: 1.55;
+}
+
+.lead-xl {
+	font-size: 38px;
+	font-weight: 600;
+	letter-spacing: 0;
+	line-height: 1.15;
+	font-variation-settings: 'wdth' 96;
+}
+
+/* ---------- Botones ---------- */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 14px 24px;
+	border-radius: var(--radius-sm);
+	font-family: var(--font-display);
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 1;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.btn--primary {
+	background: var(--brand);
+	color: var(--text);
+}
+
+.btn--primary:hover {
+	background: var(--surface-dark);
+	color: var(--brand);
+}
+
+.btn svg {
+	width: 18px;
+	height: 18px;
+}
+
+/* ---------- Utilidades ---------- */
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.placeholder {
+	background: var(--bg-soft);
+	background-image: linear-gradient(135deg, #ececec 25%, transparent 25%),
+		linear-gradient(225deg, #ececec 25%, transparent 25%),
+		linear-gradient(45deg, #ececec 25%, transparent 25%),
+		linear-gradient(315deg, #ececec 25%, #f3f3f3 25%);
+	background-size: 20px 20px;
+	background-position:
+		0 0,
+		10px 0,
+		10px -10px,
+		0 10px;
+}
+
+@media (max-width: 1024px) {
+	.section {
+		padding-block: 72px;
+	}
+
+	.section-title {
+		font-size: 30px;
+	}
+
+	.lead-xl {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 640px) {
+	:root {
+		--gutter: 16px;
+	}
+
+	.section {
+		padding-block: 56px;
+	}
+
+	.section-title {
+		font-size: 24px;
+		letter-spacing: -0.48px;
+	}
+
+	.lead-xl {
+		font-size: 24px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

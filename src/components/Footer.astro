@@ -1,0 +1,203 @@
+---
+import { footer, site } from '../data/site';
+import Icon from './ui/Icon.astro';
+---
+
+<footer class="footer">
+	<div class="footer__contact" id="contacto">
+		<div class="container container--wide">
+			<p class="footer__label">{footer.ctaLabel}</p>
+			<a class="footer__email" href={`mailto:${footer.email}`}>
+				<span class="footer__email-text">{footer.email}</span>
+				<span class="footer__email-arrow">
+					<Icon name="arrow-diagonal" size={40} strokeWidth={1.5} />
+				</span>
+			</a>
+			<p class="footer__tagline">{footer.tagline}</p>
+		</div>
+	</div>
+
+	<div class="footer__bottom">
+		<div class="container container--wide footer__bottom-inner">
+			<a class="footer__brand" href="#inicio">
+				<img src={site.logoWhite} alt="Servicios Múltiples del Noroeste" width="180" height="40" />
+			</a>
+
+			<nav class="footer__nav" aria-label="Navegación del pie de página">
+				{
+					footer.nav.map((link) => (
+						<a class="footer__link" href={link.href}>
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
+
+			<p class="footer__legal">{footer.legal}</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--surface-dark);
+		color: var(--white);
+	}
+
+	.footer__contact {
+		padding-block: 72px 64px;
+	}
+
+	.footer__label {
+		font-family: var(--font-ui);
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 1;
+		text-transform: lowercase;
+	}
+
+	.footer__email {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		margin-top: 18px;
+	}
+
+	.footer__email-text {
+		color: var(--brand);
+		font-size: 90px;
+		font-weight: 100;
+		letter-spacing: -9px;
+		line-height: 1;
+		font-variation-settings: 'wdth' 96;
+		transition: color 0.2s ease;
+	}
+
+	.footer__email:hover .footer__email-text {
+		color: var(--white);
+	}
+
+	.footer__email-arrow {
+		display: grid;
+		place-items: center;
+		color: var(--white);
+		transition: transform 0.2s ease;
+	}
+
+	.footer__email:hover .footer__email-arrow {
+		transform: translate(6px, -6px);
+	}
+
+	.footer__tagline {
+		margin-top: 24px;
+		color: rgba(255, 255, 255, 0.65);
+		font-family: var(--font-ui);
+		font-size: 20px;
+		font-weight: 400;
+		letter-spacing: 15.6px;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+	.footer__bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.footer__bottom-inner {
+		display: flex;
+		align-items: center;
+		gap: 32px;
+		padding-block: 24px;
+	}
+
+	.footer__brand img {
+		width: 180px;
+		height: auto;
+	}
+
+	.footer__nav {
+		display: flex;
+		gap: 32px;
+	}
+
+	.footer__link {
+		font-family: var(--font-ui);
+		font-size: 16px;
+		font-weight: 600;
+		transition: color 0.2s ease;
+	}
+
+	.footer__link:hover {
+		color: var(--brand);
+	}
+
+	.footer__legal {
+		margin-left: auto;
+		color: rgba(255, 255, 255, 0.55);
+		font-family: var(--font-ui);
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	@media (max-width: 1024px) {
+		.footer__email-text {
+			font-size: 56px;
+			letter-spacing: -4px;
+		}
+
+		.footer__tagline {
+			font-size: 16px;
+			letter-spacing: 8px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.footer__contact {
+			padding-block: 48px 40px;
+		}
+
+		.footer__label {
+			font-size: 20px;
+		}
+
+		.footer__email-text {
+			font-size: 28px;
+			letter-spacing: -2.8px;
+		}
+
+		.footer__tagline {
+			font-size: 14px;
+			letter-spacing: 4px;
+		}
+
+		.footer__bottom-inner {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 20px;
+		}
+
+		.footer__nav {
+			flex-wrap: wrap;
+			gap: 16px 24px;
+		}
+
+		.footer__legal {
+			margin-left: 0;
+		}
+	}
+</style>
+
+<script>
+	const brand = document.querySelector<HTMLElement>('.footer__brand');
+	const logo = brand?.querySelector<HTMLImageElement>('img');
+
+	if (brand && logo) {
+		logo.addEventListener('error', () => {
+			logo.style.display = 'none';
+			brand.textContent = 'Servicios Múltiples del Noroeste';
+			brand.style.fontFamily = 'var(--font-ui)';
+			brand.style.fontWeight = '600';
+		});
+		if (logo.complete && logo.naturalWidth === 0) logo.style.display = 'none';
+	}
+</script>

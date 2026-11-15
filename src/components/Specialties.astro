@@ -1,0 +1,256 @@
+---
+import { specialties } from '../data/site';
+import Icon from './ui/Icon.astro';
+---
+
+<section class="section specialties" id="servicios">
+	<div class="container">
+		<div class="specialties__head">
+			<span class="eyebrow">{specialties.eyebrow}</span>
+			<h2 class="section-title">{specialties.title}</h2>
+		</div>
+
+		<div class="specialties__list" data-accordion>
+			{
+				specialties.items.map((area, index) => (
+					<article
+						class:list={['area', { 'is-active': index === 0 }]}
+						data-area
+						style={`--area-image: url('${area.image}')`}
+					>
+						<button
+							class="area__head"
+							type="button"
+							aria-expanded={index === 0 ? 'true' : 'false'}
+						>
+							<span class="area__icon">
+								<img src={area.icon} alt="" width="40" height="40" loading="lazy" />
+							</span>
+							<span class="area__title">{area.title}</span>
+							<span class="area__chevron">
+								<Icon name="chevron-down" size={20} />
+							</span>
+						</button>
+						<p class="area__desc">{area.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.specialties__head {
+		display: grid;
+		gap: 16px;
+		justify-items: start;
+		margin-bottom: 40px;
+	}
+
+	.specialties__list {
+		display: grid;
+		gap: 16px;
+	}
+
+	.area {
+		position: relative;
+		display: grid;
+		grid-template-columns: 80px 380px 1fr;
+		align-items: center;
+		gap: 32px;
+		padding: 24px 32px;
+		border-radius: var(--radius);
+		background: var(--white);
+		transition:
+			background-color 0.25s ease,
+			color 0.25s ease;
+	}
+
+	.area__head {
+		display: contents;
+		text-align: left;
+	}
+
+	.area__icon {
+		display: grid;
+		place-items: center;
+		width: 80px;
+		height: 80px;
+		border-radius: var(--radius);
+		background: var(--bg-soft);
+		overflow: hidden;
+	}
+
+	.area__icon img {
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
+	}
+
+	.area__title {
+		font-size: 23px;
+		font-weight: 900;
+		letter-spacing: -0.46px;
+		line-height: 1.1;
+		font-variation-settings: 'wdth' 96;
+	}
+
+	.area__desc {
+		color: #5c5c5c;
+		font-size: 16px;
+		line-height: 1.45;
+	}
+
+	.area__chevron {
+		display: none;
+		color: var(--text);
+		transition: transform 0.25s ease;
+	}
+
+	/* Estado activo (desktop): panel con imagen de fondo */
+	.area.is-active {
+		grid-template-columns: 1fr;
+		justify-items: start;
+		align-content: center;
+		gap: 20px;
+		min-height: 430px;
+		padding: 56px;
+		color: var(--white);
+		background-image:
+			linear-gradient(
+				90deg,
+				rgba(28, 24, 21, 0.97) 0%,
+				rgba(28, 24, 21, 0.9) 38%,
+				rgba(28, 24, 21, 0.25) 72%,
+				rgba(28, 24, 21, 0.1) 100%
+			),
+			var(--area-image);
+		background-size: cover;
+		background-position: center;
+	}
+
+	.area.is-active .area__icon {
+		background: var(--brand);
+	}
+
+	.area.is-active .area__icon img {
+		filter: brightness(0) saturate(100%);
+	}
+
+	.area.is-active .area__title {
+		font-size: 21px;
+		letter-spacing: -0.42px;
+	}
+
+	.area.is-active .area__desc {
+		max-width: 46ch;
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	@media (max-width: 1024px) {
+		.area {
+			grid-template-columns: 64px 1fr;
+			gap: 20px;
+			padding: 20px 24px;
+		}
+
+		.area__icon {
+			width: 64px;
+			height: 64px;
+		}
+
+		.area__desc {
+			grid-column: 1 / -1;
+		}
+
+		.area.is-active {
+			min-height: 340px;
+			padding: 36px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.area {
+			grid-template-columns: 56px 1fr auto;
+			align-items: center;
+			gap: 16px;
+			padding: 16px;
+			cursor: pointer;
+		}
+
+		.area__icon {
+			width: 56px;
+			height: 56px;
+			border-radius: 12px;
+		}
+
+		.area__title {
+			font-size: 18px;
+			letter-spacing: -0.36px;
+		}
+
+		.area__chevron {
+			display: block;
+		}
+
+		.area__desc {
+			display: none;
+			grid-column: 1 / -1;
+			font-size: 16px;
+		}
+
+		.area.is-active {
+			grid-template-columns: 56px 1fr auto;
+			justify-items: stretch;
+			align-content: start;
+			gap: 14px;
+			min-height: 0;
+			padding: 16px;
+			border-radius: var(--radius);
+			background-image:
+				linear-gradient(
+					180deg,
+					rgba(28, 24, 21, 0.95) 0%,
+					rgba(28, 24, 21, 0.9) 60%,
+					rgba(28, 24, 21, 0.75) 100%
+				),
+				var(--area-image);
+		}
+
+		.area.is-active .area__icon {
+			width: 56px;
+			height: 56px;
+		}
+
+		.area.is-active .area__title {
+			font-size: 18px;
+		}
+
+		.area.is-active .area__desc {
+			display: block;
+			margin-top: 4px;
+		}
+
+		.area.is-active .area__chevron {
+			transform: rotate(180deg);
+			color: var(--white);
+		}
+	}
+</style>
+
+<script>
+	const list = document.querySelector<HTMLElement>('[data-accordion]');
+
+	list?.querySelectorAll<HTMLElement>('[data-area]').forEach((area) => {
+		const head = area.querySelector<HTMLButtonElement>('.area__head');
+		const desc = area.querySelector<HTMLElement>('.area__desc');
+
+		const toggle = () => {
+			const isActive = area.classList.toggle('is-active');
+			head?.setAttribute('aria-expanded', String(isActive));
+		};
+
+		head?.addEventListener('click', toggle);
+		desc?.addEventListener('click', toggle);
+	});
+</script>

@@ -1,0 +1,64 @@
+---
+import { clients } from '../data/site';
+---
+
+<section class="clients">
+	<div class="container clients__inner">
+		{
+			clients.map((client) => (
+				<img
+					class="clients__logo"
+					src={client.logo}
+					alt={client.name}
+					width="200"
+					height="60"
+					loading="lazy"
+				/>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.clients {
+		padding-block: 64px 96px;
+	}
+
+	.clients__inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 48px;
+	}
+
+	.clients__logo {
+		max-height: 52px;
+		width: auto;
+		filter: grayscale(1);
+		opacity: 0.75;
+		transition:
+			filter 0.25s ease,
+			opacity 0.25s ease;
+	}
+
+	.clients__logo:hover {
+		filter: grayscale(0);
+		opacity: 1;
+	}
+
+	@media (max-width: 640px) {
+		.clients {
+			padding-block: 48px 64px;
+		}
+
+		.clients__inner {
+			justify-content: center;
+			gap: 32px;
+		}
+
+		.clients__logo {
+			max-height: 40px;
+		}
+	}
+</style>

@@ -1,0 +1,323 @@
+---
+import { portfolio } from '../data/site';
+import CloseButton from './ui/CloseButton.astro';
+
+const projects = portfolio.items;
+---
+
+{
+	projects.map((project) => (
+		<div class="modal" id={`proyecto-${project.slug}`} data-modal={project.slug} hidden>
+			<div class="modal__backdrop" data-modal-close />
+
+			<div
+				class="modal__card"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby={`titulo-${project.slug}`}
+			>
+				<div class="modal__close">
+					<CloseButton label={`Cerrar ${project.title}`} />
+				</div>
+
+				<div class="modal__info">
+					<p class="modal__eyebrow">
+						{project.category}
+						<span class="modal__year">{project.year}</span>
+					</p>
+					<h3 class="modal__title" id={`titulo-${project.slug}`}>
+						{project.title}
+					</h3>
+					<p class="modal__desc">{project.description}</p>
+
+					<div class="modal__thumbs">
+						{project.gallery.map((image, i) => (
+							<button
+								class:list={['thumb', { 'is-active': i === 0 }]}
+								type="button"
+								data-thumb={image}
+								aria-label={`Ver imagen ${i + 1} de ${project.title}`}
+							>
+								<img src={image} alt="" width="120" height="90" loading="lazy" />
+							</button>
+						))}
+					</div>
+				</div>
+
+				<div class="modal__media">
+					<img
+						class="modal__image"
+						src={project.gallery[0]}
+						alt={project.title}
+						width="690"
+						height="680"
+						data-modal-image
+					/>
+				</div>
+			</div>
+		</div>
+	))
+}
+
+<style>
+	.modal {
+		position: fixed;
+		inset: 0;
+		z-index: 90;
+		display: grid;
+		place-items: center;
+		padding: 24px;
+	}
+
+	.modal[hidden] {
+		display: none;
+	}
+
+	.modal__backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(20, 20, 20, 0.45);
+		backdrop-filter: blur(6px);
+		opacity: 0;
+		transition: opacity 0.25s ease;
+	}
+
+	.modal.is-open .modal__backdrop {
+		opacity: 1;
+	}
+
+	.modal__card {
+		position: relative;
+		display: grid;
+		grid-template-columns: 511px 690px;
+		gap: 48px;
+		width: min(1249px, 100%);
+		padding: 48px;
+		border-radius: 20px;
+		background: var(--white);
+		box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
+		opacity: 0;
+		transform: translateY(16px) scale(0.98);
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+	}
+
+	.modal.is-open .modal__card {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+
+	.modal__close {
+		position: absolute;
+		top: -18px;
+		right: -18px;
+		z-index: 2;
+	}
+
+	.modal__info {
+		display: grid;
+		align-content: start;
+		gap: 20px;
+	}
+
+	.modal__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		color: var(--brand);
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 0.7px;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.modal__year {
+		color: var(--text);
+	}
+
+	.modal__title {
+		font-size: 34px;
+		font-weight: 800;
+		letter-spacing: -0.68px;
+		line-height: 1.05;
+		font-variation-settings: 'wdth' 96;
+	}
+
+	.modal__desc {
+		color: #5c5c5c;
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	.modal__thumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: auto;
+		padding-top: 24px;
+	}
+
+	.thumb {
+		width: 108px;
+		aspect-ratio: 4 / 3;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 2px solid transparent;
+		background: var(--bg-soft);
+		transition: border-color 0.2s ease;
+	}
+
+	.thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.thumb:hover {
+		border-color: #cfcfcf;
+	}
+
+	.thumb.is-active {
+		border-color: var(--brand);
+	}
+
+	.modal__media {
+		border-radius: 14px;
+		overflow: hidden;
+		background: var(--bg-soft);
+	}
+
+	.modal__image {
+		width: 100%;
+		height: 100%;
+		min-height: 560px;
+		object-fit: cover;
+	}
+
+	@media (max-width: 1024px) {
+		.modal__card {
+			grid-template-columns: 1fr;
+			gap: 24px;
+			padding: 32px;
+		}
+
+		.modal__image {
+			min-height: 0;
+			aspect-ratio: 16 / 10;
+		}
+
+		.modal__close {
+			top: 12px;
+			right: 12px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.modal {
+			padding: 12px;
+		}
+
+		.modal__card {
+			padding: 24px 20px;
+			border-radius: 16px;
+		}
+
+		.modal__title {
+			font-size: 24px;
+			letter-spacing: -0.48px;
+		}
+
+		.modal__thumbs {
+			gap: 8px;
+		}
+
+		.thumb {
+			width: 72px;
+		}
+	}
+</style>
+
+<script>
+	const modals = Array.from(document.querySelectorAll<HTMLElement>('[data-modal]'));
+	let openModal: HTMLElement | null = null;
+	let lastFocused: HTMLElement | null = null;
+
+	const open = (slug: string) => {
+		const modal = modals.find((m) => m.dataset.modal === slug);
+		if (!modal) return;
+		lastFocused = document.activeElement as HTMLElement;
+		modal.hidden = false;
+		document.body.classList.add('is-locked');
+		requestAnimationFrame(() => modal.classList.add('is-open'));
+		openModal = modal;
+		modal.querySelector<HTMLElement>('button')?.focus();
+	};
+
+	const close = () => {
+		if (!openModal) return;
+		const modal = openModal;
+		modal.classList.remove('is-open');
+		document.body.classList.remove('is-locked');
+		openModal = null;
+		window.setTimeout(() => {
+			modal.hidden = true;
+		}, 300);
+		lastFocused?.focus();
+	};
+
+	document.addEventListener('click', (event) => {
+		const target = event.target as HTMLElement;
+
+		const trigger = target.closest<HTMLElement>('[data-open-modal]');
+		if (trigger?.dataset.openModal) {
+			event.preventDefault();
+			open(trigger.dataset.openModal);
+			return;
+		}
+
+		if (target.closest('[data-modal-close]')) {
+			close();
+			return;
+		}
+
+		const thumb = target.closest<HTMLElement>('[data-thumb]');
+		if (thumb?.dataset.thumb && openModal) {
+			const image = openModal.querySelector<HTMLImageElement>('[data-modal-image]');
+			if (image) {
+				image.src = thumb.dataset.thumb;
+				image.classList.add('is-loading');
+				image.addEventListener('load', () => image.classList.remove('is-loading'));
+			}
+			openModal
+				.querySelectorAll<HTMLElement>('[data-thumb]')
+				.forEach((el) => el.classList.toggle('is-active', el === thumb));
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (!openModal) return;
+
+		if (event.key === 'Escape') {
+			close();
+			return;
+		}
+
+		if (event.key === 'Tab') {
+			const focusables = openModal.querySelectorAll<HTMLElement>(
+				'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+			);
+			if (focusables.length === 0) return;
+			const first = focusables[0];
+			const last = focusables[focusables.length - 1];
+			if (event.shiftKey && document.activeElement === first) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && document.activeElement === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		}
+	});
+</script>

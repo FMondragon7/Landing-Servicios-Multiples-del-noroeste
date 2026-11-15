@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+	label?: string;
+	class?: string;
+}
+
+const { label = 'Cerrar', class: className } = Astro.props;
+---
+
+<button type="button" class:list={['close-btn', className]} aria-label={label}>
+	<Icon name="close" size={16} strokeWidth={2.5} />
+</button>
+
+<style>
+	.close-btn {
+		display: grid;
+		place-items: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(45, 45, 45, 0.75);
+		color: var(--white);
+		backdrop-filter: blur(4px);
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.close-btn:hover {
+		background: var(--brand);
+		color: var(--text);
+		transform: rotate(90deg);
+	}
+</style>

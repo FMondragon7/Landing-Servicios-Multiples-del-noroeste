@@ -1,0 +1,72 @@
+---
+import { about } from '../data/site';
+---
+
+<section class="section about">
+	<div class="container about__grid">
+		<div class="about__media">
+			<img
+				src={about.image}
+				alt="Interior en proceso de remodelación"
+				width="391"
+				height="350"
+				loading="lazy"
+			/>
+		</div>
+
+		<div class="about__copy">
+			<span class="eyebrow">{about.eyebrow}</span>
+			<p class="lead-xl about__lead">{about.lead}</p>
+			<p class="about__body">{about.body}</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about__grid {
+		display: grid;
+		grid-template-columns: 391px 1fr;
+		gap: 48px;
+		align-items: center;
+	}
+
+	.about__media {
+		border-radius: var(--radius);
+		overflow: hidden;
+		background: var(--bg-soft);
+	}
+
+	.about__media img {
+		width: 100%;
+		aspect-ratio: 391 / 350;
+		object-fit: cover;
+	}
+
+	.about__copy {
+		display: grid;
+		gap: 24px;
+		justify-items: start;
+	}
+
+	.about__lead {
+		max-width: 24ch;
+	}
+
+	.about__body {
+		max-width: 66ch;
+		color: #5c5c5c;
+		font-size: 16px;
+		line-height: 1.55;
+	}
+
+	@media (max-width: 900px) {
+		.about__grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+
+		.about__media {
+			max-width: 420px;
+		}
+	}
+</style>

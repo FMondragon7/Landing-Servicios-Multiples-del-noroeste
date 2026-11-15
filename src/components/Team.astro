@@ -1,0 +1,172 @@
+---
+import { team } from '../data/site';
+---
+
+<section class="section team" id="equipo">
+	<div class="container team__grid">
+		<div class="team__feature">
+			<div class="team__copy">
+				<span class="eyebrow">{team.eyebrow}</span>
+				<h2 class="section-title">{team.title}</h2>
+				<p class="team__body">{team.body}</p>
+			</div>
+			<div class="team__media">
+				<img src={team.image} alt="Equipo de obra" width="814" height="450" loading="lazy" />
+			</div>
+		</div>
+
+		<div class="team__stats">
+			{
+				team.stats.map((stat) => (
+					<div class:list={['stat', { 'stat--dark': stat.dark }]}>
+						<span class="stat__value">
+							<span class="stat__sign">{stat.sign}</span>
+							{stat.value}
+						</span>
+						<span class="stat__label">{stat.label}</span>
+						<span class="stat__caption">{stat.caption}</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.team__grid {
+		display: grid;
+		grid-template-columns: 1fr 392px;
+		gap: 24px;
+		align-items: stretch;
+	}
+
+	.team__feature {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		border-radius: var(--radius);
+		overflow: hidden;
+		background: var(--white);
+	}
+
+	.team__copy {
+		display: grid;
+		align-content: center;
+		gap: 20px;
+		padding: 48px;
+	}
+
+	.team__body {
+		color: #5c5c5c;
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	.team__media {
+		background: var(--bg-soft);
+	}
+
+	.team__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.team__stats {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1.15fr 1fr;
+		gap: 24px;
+	}
+
+	.stat {
+		display: grid;
+		align-content: center;
+		gap: 6px;
+		padding: 32px;
+		border-radius: var(--radius);
+		background: var(--white);
+	}
+
+	.stat:first-child {
+		grid-column: 1 / -1;
+		background:
+			linear-gradient(180deg, rgba(28, 24, 21, 0.55), rgba(28, 24, 21, 0.92)),
+			url('/assets/images/equipo/equipo-1.jpg') center / cover;
+		color: var(--white);
+	}
+
+	.stat__value {
+		display: flex;
+		align-items: flex-start;
+		font-size: 60px;
+		font-weight: 600;
+		letter-spacing: -1.2px;
+		line-height: 1;
+		font-variation-settings: 'wdth' 96;
+	}
+
+	.stat__sign {
+		color: var(--brand);
+		font-size: 45px;
+		font-weight: 400;
+		letter-spacing: -0.9px;
+	}
+
+	.stat__label {
+		font-size: 20px;
+		font-weight: 800;
+		letter-spacing: -0.4px;
+		line-height: 1.1;
+	}
+
+	.stat__caption {
+		color: #5c5c5c;
+		font-size: 16px;
+		font-weight: 300;
+		line-height: 1.35;
+	}
+
+	.stat--dark .stat__caption {
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	@media (max-width: 1024px) {
+		.team__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.team__stats {
+			grid-template-rows: auto;
+		}
+
+		.stat {
+			padding: 24px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.team__feature {
+			grid-template-columns: 1fr;
+		}
+
+		.team__copy {
+			padding: 28px 24px;
+		}
+
+		.team__media {
+			max-height: 260px;
+		}
+
+		.team__stats {
+			grid-template-columns: 1fr;
+		}
+
+		.stat__value {
+			font-size: 48px;
+		}
+
+		.stat__sign {
+			font-size: 36px;
+		}
+	}
+</style>

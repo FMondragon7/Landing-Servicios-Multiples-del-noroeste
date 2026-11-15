@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+	label: string;
+	icon?: string;
+	class?: string;
+}
+
+const { label, icon = 'shield', class: className } = Astro.props;
+---
+
+<span class:list={['badge', className]}>
+	<Icon name={icon} size={16} strokeWidth={2} />
+	<span>{label}</span>
+</span>
+
+<style>
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 14px;
+		border-radius: 6px;
+		background: rgba(45, 45, 45, 0.72);
+		color: var(--white);
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1;
+		backdrop-filter: blur(4px);
+	}
+</style>
