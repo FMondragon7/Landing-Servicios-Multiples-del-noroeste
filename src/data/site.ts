@@ -61,7 +61,7 @@ export const specialties = {
 			description:
 				'Construcción, mantenimiento y adecuación de instalaciones industriales, con soluciones enfocadas en seguridad, eficiencia y continuidad operativa',
 			icon: '/assets/icons/area-industrial.svg',
-			image: '/assets/images/areas/industrial.jpg',
+			image: '/assets/images/areas/industrial.png',
 		},
 		{
 			id: 'empresarial',

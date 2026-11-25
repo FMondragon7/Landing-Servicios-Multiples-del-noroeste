@@ -16,7 +16,7 @@ de romperse.
 | `logo-white.svg` | Logo del footer (versión en blanco) | ~220×45 |
 | `hero/hero-1.jpg` | Imagen principal del hero | 1400×700 |
 | `nosotros/nosotros-1.jpg` | Imagen de la sección "Nosotros" | 391×350 |
-| `areas/industrial.jpg` | Área activa por defecto | 1230×430 |
+| `areas/industrial.png` | Área activa por defecto (PNG con transparencia) | 1230×430 |
 | `areas/empresarial.jpg` | Fondo de la fila "Empresarial" al expandirse | 1230×430 |
 | `areas/residencial.jpg` | Fondo de la fila "Residencial" | 1230×430 |
 | `areas/gubernamental.jpg` | Fondo de la fila "Gubernamental" | 1230×430 |
