@@ -1,5 +1,5 @@
 ---
-import { hero, site, navLinks } from '../data/site';
+import { hero, site } from '../data/site';
 import Icon from './ui/Icon.astro';
 ---
 
@@ -32,21 +32,6 @@ import Icon from './ui/Icon.astro';
 	</div>
 </section>
 
-<div class="mobile-menu" id="mobile-menu" hidden>
-	<nav class="mobile-menu__nav" aria-label="Navegación móvil">
-		{
-			navLinks.map((link) => (
-				<a class="mobile-menu__link" href={link.href}>
-					{link.label}
-				</a>
-			))
-		}
-		<a class="btn btn--primary mobile-menu__cta" href="#contacto">
-			Contacto
-			<Icon name="arrow-diagonal" size={18} />
-		</a>
-	</nav>
-</div>
 <style>
 	.hero {
 		position: relative;
