@@ -32,8 +32,8 @@ export const site = {
 export const navLinks: NavLink[] = [
 	{ label: 'Servicios', href: '#servicios' },
 	{ label: 'Portafolio', href: '#portafolio' },
-	{ label: 'Dudas', href: '#dudas' },
 	{ label: 'Equipo', href: '#equipo' },
+	{ label: 'Dudas', href: '#dudas' },
 ];
 
 export const hero = {

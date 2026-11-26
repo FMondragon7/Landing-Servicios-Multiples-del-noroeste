@@ -22,11 +22,9 @@ de romperse.
 | `areas/gubernamental.jpg` | Fondo de la fila "Gubernamental" | 1230×430 |
 | `areas/diseno-planos-tramites.jpg` | Fondo de la fila "Diseño, planos y trámites" | 1230×430 |
 | `portafolio/remodelacion-laboratorio-quimico/1.jpg` | Portada del proyecto | 394×490 |
-| `portafolio/remodelacion-laboratorio-quimico/2.jpg` | Galería del modal | 1231×690 |
-| `portafolio/remodelacion-laboratorio-quimico/3.jpg` | Galería del modal | 1231×690 |
-| `portafolio/remodelacion-laboratorio-quimico/4.jpg` | Galería del modal | 1231×690 |
-| `portafolio/casa-cantera/1.jpg` … `4.jpg` | Ídem | |
-| `portafolio/oficinas-pjbc/1.jpg` … `4.jpg` | Ídem | |
+| `portafolio/casa-cantera/1.jpg` | Portada del proyecto | |
+| `portafolio/oficinas-pjbc/1.jpg` | Portada del proyecto | |
+| *Galerías (2-4.jpg): pendientes de parte del cliente* |
 | `equipo/equipo-1.png` | Foto de la sección "Profesionales, siempre" | 814×450 |
 | `logos/pepsico.svg` | Franja de clientes | ~200×40 |
 | `logos/poder-judicial.svg` | Franja de clientes | |
@@ -36,7 +34,7 @@ de romperse.
 | `logos/silza.svg` | Franja de clientes | |
 | `og/og-image.jpg` | Imagen de Open Graph (1200×630) | 1200×630 |
 
-> La franja de clientes se muestra en escala de grises; puedes subir los logos a color.
+> La franja de clientes ya tiene los logos colocados en `public/assets/images/logos/`. Todos los SVGs se muestran con efecto grayscale al pasar el ratón.
 
 ## `icons/`
 

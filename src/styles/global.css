@@ -124,9 +124,7 @@ h3 {
 	padding-block: 64px;
 }
 
-[id] {
-	scroll-margin-top: calc(var(--header-h) + 16px);
-}
+/* scroll-margin-top removido: el logo debe llevar al inicio exacto de la página */
 
 /* ---------- Tipografía ---------- */
 

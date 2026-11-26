@@ -122,7 +122,6 @@ import Icon from './ui/Icon.astro';
 		display: flex;
 		align-items: center;
 		gap: 40px;
-		margin-left: auto;
 	}
 
 	.nav__link {
@@ -130,11 +129,12 @@ import Icon from './ui/Icon.astro';
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 1;
-		transition: color 0.2s ease;
+		transition: color 0.2s ease, transform 0.2s ease;
 	}
 
 	.nav__link:hover {
 		color: var(--brand);
+		transform: scale(1.05);
 	}
 
 	.header__actions {
@@ -145,6 +145,11 @@ import Icon from './ui/Icon.astro';
 
 	.header__cta {
 		padding: 14px 22px;
+		transition: transform 0.2s ease;
+	}
+
+	.header__cta:hover {
+		transform: scale(1.05);
 	}
 
 	.burger {
@@ -199,8 +204,13 @@ import Icon from './ui/Icon.astro';
 		if (logo.complete && logo.naturalWidth === 0) brand.classList.add('is-fallback');
 	}
 
+	brand.addEventListener('click', (e) => {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+
 	const burger = document.querySelector<HTMLButtonElement>('.burger');
-	const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
+	const mobileMenu = document.querySelector<Element>('#mobile-menu');
 
 	burger?.addEventListener('click', () => {
 		const isOpen = burger.getAttribute('aria-expanded') === 'true';
