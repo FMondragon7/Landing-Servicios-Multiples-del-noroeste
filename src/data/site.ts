@@ -222,7 +222,7 @@ export const clients = [
 		logo: '/assets/images/logos/edificaciones-ecologicas.svg',
 	},
 	{ name: 'Fonesa', logo: '/assets/images/logos/fonesa.svg' },
-	{ name: 'Silzin', logo: '/assets/images/logos/silzin.svg' },
+	{ name: 'Silza', logo: '/assets/images/logos/silza.svg' },
 ];
 
 export const footer = {
