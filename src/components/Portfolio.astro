@@ -4,7 +4,6 @@ import Icon from './ui/Icon.astro';
 import Badge from './ui/Badge.astro';
 
 const items = portfolio.items;
-const clones = [...items];
 ---
 
 <section class="section portfolio" id="portafolio">
@@ -35,28 +34,6 @@ const clones = [...items];
 		<div class="portfolio__viewport" data-carousel-viewport>
 			<ul class="portfolio__track" data-carousel-track>
 				{
-					clones.map((project) => (
-						<li class="card" data-clone="prev" aria-hidden="true">
-							<a
-								class="card__trigger"
-								href={`#proyecto-${project.slug}`}
-								tabindex="-1"
-								data-open-modal={project.slug}
-							>
-								<img class="card__image" src={project.cover} alt="" width="394" height="490" loading="lazy" />
-								<span class="card__shade" />
-								<span class="card__badge">
-									<Badge label={project.category} />
-								</span>
-								<span class="card__arrow">
-									<Icon name="arrow-diagonal" size={18} />
-								</span>
-								<span class="card__title">{project.title}</span>
-							</a>
-						</li>
-					))
-				}
-				{
 					items.map((project) => (
 						<li class="card" data-card>
 							<a
@@ -65,28 +42,6 @@ const clones = [...items];
 								data-open-modal={project.slug}
 							>
 								<img class="card__image" src={project.cover} alt={project.title} width="394" height="490" loading="lazy" />
-								<span class="card__shade" />
-								<span class="card__badge">
-									<Badge label={project.category} />
-								</span>
-								<span class="card__arrow">
-									<Icon name="arrow-diagonal" size={18} />
-								</span>
-								<span class="card__title">{project.title}</span>
-							</a>
-						</li>
-					))
-				}
-				{
-					clones.map((project) => (
-						<li class="card" data-clone="next" aria-hidden="true">
-							<a
-								class="card__trigger"
-								href={`#proyecto-${project.slug}`}
-								tabindex="-1"
-								data-open-modal={project.slug}
-							>
-								<img class="card__image" src={project.cover} alt="" width="394" height="490" loading="lazy" />
 								<span class="card__shade" />
 								<span class="card__badge">
 									<Badge label={project.category} />
@@ -324,7 +279,7 @@ const clones = [...items];
 		};
 
 		const update = () => {
-			track.style.transform = `translate3d(${-index * step}px, 0, 0)`;
+			track.style.transform = `translate3d(${-(index - 1) * step}px, 0, 0)`;
 			const bars = progress?.querySelectorAll<HTMLElement>('.progress__bar');
 			bars?.forEach((bar, i) => bar.classList.toggle('is-active', i === (index - 1) % total));
 			realCards.forEach((card, i) => {
@@ -343,35 +298,13 @@ const clones = [...items];
 
 		const go = (dir: 1 | -1) => {
 			index += dir;
-			if (index > total) jump(1);
-			else if (index < 1) jump(total);
+			if (index > total) index = total;
+			else if (index < 1) index = 1;
 			else update();
 		};
 
 		prevBtn?.addEventListener('click', () => go(-1));
 		nextBtn?.addEventListener('click', () => go(1));
-
-		// Arrastre táctil
-		let startX = 0;
-		let dragging = false;
-		viewport.addEventListener(
-			'touchstart',
-			(e) => {
-				startX = e.touches[0].clientX;
-				dragging = true;
-			},
-			{ passive: true }
-		);
-		viewport.addEventListener(
-			'touchend',
-			(e) => {
-				if (!dragging) return;
-				dragging = false;
-				const delta = e.changedTouches[0].clientX - startX;
-				if (Math.abs(delta) > 45) go(delta < 0 ? 1 : -1);
-			},
-			{ passive: true }
-		);
 
 		const onResize = () => {
 			measure();
