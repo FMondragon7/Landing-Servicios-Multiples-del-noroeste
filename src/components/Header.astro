@@ -30,7 +30,7 @@ import Icon from './ui/Icon.astro';
 		</nav>
 
 		<div class="header__actions">
-			<a class="btn btn--primary header__cta" href="#contacto">
+			<a class="btn btn--primary header__cta" href={site.whatsapp} target="_blank" rel="noopener">
 				Contacto
 				<Icon name="arrow-diagonal" size={18} />
 			</a>
@@ -60,7 +60,7 @@ import Icon from './ui/Icon.astro';
 				</a>
 			))
 		}
-		<a class="btn btn--primary mobile-menu__cta" href="#contacto">
+		<a class="btn btn--primary mobile-menu__cta" href={site.whatsapp} target="_blank" rel="noopener">
 			Contacto
 			<Icon name="arrow-diagonal" size={18} />
 		</a>
