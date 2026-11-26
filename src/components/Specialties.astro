@@ -175,8 +175,23 @@ import Icon from './ui/Icon.astro';
 		}
 
 		.area.is-active {
-			min-height: 340px;
+			max-height: 250px;
 			padding: 36px;
+		}
+
+		.area.is-active {
+			background-size:
+				100% 100%,
+				100% 100%,
+				auto 270%;
+			background-position:
+				center,
+				center,
+				calc(100% + 370px) 45%;
+		}
+
+		.area.is-active .area__desc {
+			max-width: 40ch;
 		}
 	}
 
@@ -215,7 +230,9 @@ import Icon from './ui/Icon.astro';
 			justify-items: stretch;
 			align-content: start;
 			gap: 14px;
+			height: 350px;
 			min-height: 0;
+			max-height: none;
 			padding: 16px;
 			border-radius: var(--radius);
 			background-color: #2d2d2d;
@@ -228,10 +245,10 @@ import Icon from './ui/Icon.astro';
 				var(--area-image);
 			background-size:
 				100% 100%,
-				cover;
+				auto 180%;
 			background-position:
 				center,
-				right 30%;
+				calc(100% + 330px) -10%;
 		}
 
 		.area.is-active .area__icon {
@@ -251,6 +268,10 @@ import Icon from './ui/Icon.astro';
 		.area.is-active .area__chevron {
 			transform: rotate(180deg);
 			color: var(--white);
+		}
+
+		.area.is-active .area__desc {
+			max-width: 50ch;
 		}
 	}
 </style>
