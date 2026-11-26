@@ -33,7 +33,7 @@ de romperse.
 | `logos/gulfstream.svg` | Franja de clientes | |
 | `logos/edificaciones-ecologicas.svg` | Franja de clientes | |
 | `logos/fonesa.svg` | Franja de clientes | |
-| `logos/silzin.svg` | Franja de clientes | |
+| `logos/silza.svg` | Franja de clientes | |
 | `og/og-image.jpg` | Imagen de Open Graph (1200×630) | 1200×630 |
 
 > La franja de clientes se muestra en escala de grises; puedes subir los logos a color.
