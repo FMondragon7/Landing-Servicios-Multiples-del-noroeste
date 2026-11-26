@@ -27,7 +27,7 @@ de romperse.
 | `portafolio/remodelacion-laboratorio-quimico/4.jpg` | Galería del modal | 1231×690 |
 | `portafolio/casa-cantera/1.jpg` … `4.jpg` | Ídem | |
 | `portafolio/oficinas-pjbc/1.jpg` … `4.jpg` | Ídem | |
-| `equipo/equipo-1.jpg` | Foto de la sección "Profesionales, siempre" | 814×450 |
+| `equipo/equipo-1.png` | Foto de la sección "Profesionales, siempre" | 814×450 |
 | `logos/pepsico.svg` | Franja de clientes | ~200×40 |
 | `logos/poder-judicial.svg` | Franja de clientes | |
 | `logos/gulfstream.svg` | Franja de clientes | |

@@ -155,7 +155,7 @@ export const team = {
 	eyebrow: 'Equipo',
 	title: 'Profesionales, siempre',
 	body: 'Nuestro equipo cuenta con una excelente capacitación, además de un gran compromiso para ejecutar cada proyecto con precisión y calidad. Trabajamos con profesionalismo, responsabilidad y atención al detalle para garantizar un resultado impecable',
-	image: '/assets/images/equipo/equipo-1.jpg',
+	image: '/assets/images/equipo/equipo-1.png',
 	stats: [
 		{
 			value: '40',

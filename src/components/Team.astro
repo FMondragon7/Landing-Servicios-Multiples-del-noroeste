@@ -4,14 +4,11 @@ import { team } from '../data/site';
 
 <section class="section team" id="equipo">
 	<div class="container team__grid">
-		<div class="team__feature">
+		<div class="team__feature" style={`--team-image: url('${team.image}')`}>
 			<div class="team__copy">
 				<span class="eyebrow">{team.eyebrow}</span>
 				<h2 class="section-title">{team.title}</h2>
 				<p class="team__body">{team.body}</p>
-			</div>
-			<div class="team__media">
-				<img src={team.image} alt="Equipo de obra" width="814" height="450" loading="lazy" />
 			</div>
 		</div>
 
@@ -43,9 +40,14 @@ import { team } from '../data/site';
 	.team__feature {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		min-height: 450px;
 		border-radius: var(--radius);
 		overflow: hidden;
-		background: var(--white);
+		background-color: var(--white);
+		background-image: var(--team-image);
+		background-size: 175%;
+		background-position: 35%;
+		background-repeat: no-repeat;
 	}
 
 	.team__copy {
@@ -59,16 +61,6 @@ import { team } from '../data/site';
 		color: #5c5c5c;
 		font-size: 16px;
 		line-height: 1.5;
-	}
-
-	.team__media {
-		background: var(--bg-soft);
-	}
-
-	.team__media img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
 	}
 
 	.team__stats {
@@ -89,9 +81,18 @@ import { team } from '../data/site';
 
 	.stat:first-child {
 		grid-column: 1 / -1;
-		background:
-			linear-gradient(180deg, rgba(28, 24, 21, 0.55), rgba(28, 24, 21, 0.92)),
-			url('/assets/images/equipo/equipo-1.jpg') center / cover;
+		background-color: #2d2d2d;
+		background-image:
+			radial-gradient(
+				circle at 81% 10%,
+				rgba(255, 79, 0, 0.2) 0%,
+				rgba(45, 45, 45, 0) 60%
+			),
+			radial-gradient(
+				circle at 14% 100%,
+				rgba(255, 79, 0, 0.2) 0%,
+				rgba(45, 45, 45, 0) 60%
+			);
 		color: var(--white);
 	}
 
@@ -147,14 +148,16 @@ import { team } from '../data/site';
 	@media (max-width: 640px) {
 		.team__feature {
 			grid-template-columns: 1fr;
+			align-content: start;
+			min-height: 520px;
+			background-size: cover;
+			background-position: center;
 		}
 
 		.team__copy {
+			align-self: start;
 			padding: 28px 24px;
-		}
-
-		.team__media {
-			max-height: 260px;
+			background-color: var(--white);
 		}
 
 		.team__stats {
