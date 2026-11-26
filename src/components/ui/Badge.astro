@@ -1,17 +1,16 @@
 ---
-import Icon from './Icon.astro';
+import BadgeSvg from '../../../assets/icons/badgeCheck.svg';
 
 interface Props {
 	label: string;
-	icon?: string;
 	class?: string;
 }
 
-const { label, icon = 'shield', class: className } = Astro.props;
+const { label, class: className } = Astro.props;
 ---
 
 <span class:list={['badge', className]}>
-	<Icon name={icon} size={16} strokeWidth={2} />
+	<BadgeSvg width={16} height={16} />
 	<span>{label}</span>
 </span>
 
