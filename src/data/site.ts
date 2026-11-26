@@ -230,5 +230,5 @@ export const footer = {
 	email: site.email,
 	tagline: 'Construyamos juntos tu próximo proyecto',
 	nav: navLinks,
-	legal: 'Servicios múltiples del noroeste ® 2026',
+	legal: `Servicios múltiples del noroeste ® ${new Date().getFullYear()}`,
 };
