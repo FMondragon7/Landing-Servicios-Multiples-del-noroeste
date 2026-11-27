@@ -24,7 +24,7 @@ export interface Project {
 export const site = {
 	name: 'Servicios Múltiples del Noroeste',
 	email: 'ventas@servimulti.com',
-	whatsapp: 'https://wa.me/0000000000',
+	whatsapp: 'https://wa.me/6862026450',
 	logoPrimary: '/assets/images/logo-primary.svg',
 	logoWhite: '/assets/images/logo-white.svg',
 };
