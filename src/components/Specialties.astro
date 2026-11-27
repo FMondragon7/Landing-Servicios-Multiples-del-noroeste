@@ -1,6 +1,5 @@
 ---
 import { specialties } from '../data/site';
-import Icon from './ui/Icon.astro';
 ---
 
 <section class="section specialties" id="servicios">
@@ -10,27 +9,19 @@ import Icon from './ui/Icon.astro';
 			<h2 class="section-title">{specialties.title}</h2>
 		</div>
 
-		<div class="specialties__list" data-accordion>
+		<div class="specialties__list">
 			{
 				specialties.items.map((area, index) => (
 					<article
 						class:list={['area', { 'is-active': index === 0 }]}
-						data-area
 						style={`--area-image: url('${area.image}')`}
 					>
-						<button
-							class="area__head"
-							type="button"
-							aria-expanded={index === 0 ? 'true' : 'false'}
-						>
+						<div class="area__head">
 							<span class="area__icon">
 								<img src={area.icon} alt="" width="40" height="40" loading="lazy" />
 							</span>
 							<span class="area__title">{area.title}</span>
-							<span class="area__chevron">
-								<Icon name="chevron-down" size={20} />
-							</span>
-						</button>
+						</div>
 						<p class="area__desc">{area.description}</p>
 					</article>
 				))
@@ -99,12 +90,6 @@ import Icon from './ui/Icon.astro';
 		color: rgba(45,45,45,0.8);
 		font-size: 16px;
 		line-height: 1.45;
-	}
-
-	.area__chevron {
-		display: none;
-		color: var(--text);
-		transition: transform 0.25s ease;
 	}
 
 	/* Estado activo (desktop): panel con imagen de fondo */
@@ -197,11 +182,10 @@ import Icon from './ui/Icon.astro';
 
 	@media (max-width: 640px) {
 		.area {
-			grid-template-columns: 56px 1fr auto;
+			grid-template-columns: 56px 1fr;
 			align-items: center;
 			gap: 16px;
 			padding: 16px;
-			cursor: pointer;
 		}
 
 		.area__icon {
@@ -215,18 +199,13 @@ import Icon from './ui/Icon.astro';
 			letter-spacing: -0.36px;
 		}
 
-		.area__chevron {
-			display: block;
-		}
-
 		.area__desc {
-			display: none;
 			grid-column: 1 / -1;
 			font-size: 16px;
 		}
 
 		.area.is-active {
-			grid-template-columns: 56px 1fr auto;
+			grid-template-columns: 56px 1fr;
 			justify-items: stretch;
 			align-content: start;
 			gap: 14px;
@@ -261,34 +240,8 @@ import Icon from './ui/Icon.astro';
 		}
 
 		.area.is-active .area__desc {
-			display: block;
-			margin-top: 4px;
-		}
-
-		.area.is-active .area__chevron {
-			transform: rotate(180deg);
-			color: var(--white);
-		}
-
-		.area.is-active .area__desc {
 			max-width: 50ch;
+			margin-top: 4px;
 		}
 	}
 </style>
-
-<script>
-	const list = document.querySelector<HTMLElement>('[data-accordion]');
-
-	list?.querySelectorAll<HTMLElement>('[data-area]').forEach((area) => {
-		const head = area.querySelector<HTMLButtonElement>('.area__head');
-		const desc = area.querySelector<HTMLElement>('.area__desc');
-
-		const toggle = () => {
-			const isActive = area.classList.toggle('is-active');
-			head?.setAttribute('aria-expanded', String(isActive));
-		};
-
-		head?.addEventListener('click', toggle);
-		desc?.addEventListener('click', toggle);
-	});
-</script>
