@@ -16,7 +16,7 @@ const projects = portfolio.items;
 				aria-modal="true"
 				aria-labelledby={`titulo-${project.slug}`}
 			>
-				<div class="modal__close">
+				<div class="modal__close" data-modal-close>
 					<CloseButton label={`Cerrar ${project.title}`} />
 				</div>
 
@@ -89,7 +89,7 @@ const projects = portfolio.items;
 	.modal__card {
 		position: relative;
 		display: grid;
-		grid-template-columns: 511px 690px;
+		grid-template-columns: minmax(0, 511fr) minmax(0, 690fr);
 		gap: 48px;
 		width: min(1249px, 100%);
 		padding: 48px;
